@@ -1,5 +1,5 @@
 ```
-git clone http
+git clone https://github.com/frozenprocess/log4j-poc-demo.git
 ```
 
 First create a Kubernetes cluster
@@ -20,7 +20,7 @@ kubectl create -f https://docs.projectcalico.org/manifests/custom-resources.yaml
 **Note**: Do not apply this manifest in a production environment.
 Install vulnerable application
 ---
-kubectl apply -f vulnerable-demo.yml
+kubectl apply -f https://raw.githubusercontent.com/frozenprocess/log4j-poc-demo/main/vulnerable-demo.yml
 ---
 
 Checkout content of the `tmp` folder in the vulnerable pod
@@ -50,7 +50,7 @@ kubectl delete pod -l app=vuln-pod-services -n log4j-demo
 
 Apply the simply policy to network connection for the `vulnerable-pod`.
 ---
-kubectl apply -f policy.yml
+kubectl apply -f https://raw.githubusercontent.com/frozenprocess/log4j-poc-demo/main/policy.yml
 ---
 
 Execute the expolit again
