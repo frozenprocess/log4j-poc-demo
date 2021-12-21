@@ -67,5 +67,5 @@ kubectl exec -it  deployments/vuln-pod -n log4j-demo -- ls /tmp
 
 ---
 kind delete cluster --name log4j-poc
-docker rm -f log4j-poc-exploit
+docker rm -f $(docker ps --filter="name=log4j-poc-exploit"  -qa)
 ---
