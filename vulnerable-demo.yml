@@ -1,0 +1,52 @@
+####################################################
+# Disclaimer this manifest contains an application #
+# vulnerable to log4j remote code execution        #
+####################################################
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: log4j-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vuln-pod
+  namespace: log4j-demo
+  labels:
+    app: vuln-pod-services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vuln-pod-services
+  template:
+    metadata:
+      labels:
+        app: vuln-pod-services
+    spec:
+      containers:
+      - name: vuln-container
+        image: docker.io/rezareza/log4j-vulnerable-app
+        env:
+        - name: SERVER_PORT
+          value: "8080"
+        ports:
+          - name: vuln-port
+            containerPort: 8080
+            protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vuln-pod-svc
+  namespace: log4j-demo
+spec:
+  ports:
+  - name: "vuln-pod-ports"
+    nodePort: 30950
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: vuln-pod-services
+  type: NodePort

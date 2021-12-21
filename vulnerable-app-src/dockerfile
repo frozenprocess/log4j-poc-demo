@@ -1,0 +1,10 @@
+FROM gradle:7-jdk8 as base
+COPY ./app /base
+WORKDIR /base
+RUN gradle build
+
+FROM openjdk:8u181-jdk-alpine
+WORKDIR /app
+COPY --from=base /base/build/libs/base.jar /app
+ENV SERVER_PORT=8080
+CMD ["java", "-jar", "/app/base.jar", "--server.port", "${SERVER_PORT}"]
