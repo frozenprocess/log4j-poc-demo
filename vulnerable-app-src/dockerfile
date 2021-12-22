@@ -1,9 +1,9 @@
-FROM gradle:7-jdk8 as base
+FROM gradle:7-jdk11 as base
 COPY ./app /base
 WORKDIR /base
 RUN gradle build
 
-FROM openjdk:8u181-jdk-alpine
+FROM openjdk:11.0.13-jdk-slim
 WORKDIR /app
 COPY --from=base /base/build/libs/base.jar /app
 ENV SERVER_PORT=8080
