@@ -11,7 +11,11 @@ RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/conf
 # change to workdir
 WORKDIR /app
 COPY entry.sh /app/
+
 ENV SERVER_PORT=389
+ENV LDAP_TIMEOUT=2
+ENV THREADS=12
+
 EXPOSE 389
 EXPOSE 8080
 
