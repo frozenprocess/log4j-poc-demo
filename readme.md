@@ -1,3 +1,5 @@
+[Blogpost](https://www.tigera.io/blog/how-network-policies-can-protect-your-environment-from-future-vulnerabilities-like-log4j/)
+
 # Preventing the Log4j zero-day vulnerability using a simple network policy
 
 If you have access to the internet, it’s likely that you have already heard of the critical vulnerability in the Log4j library. A zero-day vulnerability in the Java library log4j, with the assigned CVE code of [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228), has been disclosed by Chen Zhaojun, a security researcher in the Alibaba Cloud Security team. It’s got people worried—and with good reason.

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Get your own the IP address
+# Get your own IP address
 SERVER_IP=`hostname -I | awk '{print $1}'`
 # This is the target dns
 REMOTE_IP="log4j-poc-control-plane"
